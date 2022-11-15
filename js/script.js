@@ -10,49 +10,42 @@ function randomItems() {
 	
 		
 }
-
 randomItems()
 
-function removeAll() {
-	for (let item of gameItems) {
-			item.removeAttribute('style')
-		}
-}
 
-function reset() {
-	return  Array.from(gameItems).every(el=> el.hasAttribute('style'))
-	}
 let count = 0;
 let first, second;
 
 game.addEventListener('click', function (event) {
+	
 	let item = event.target.closest('.game__item');
-	if (count == 0 && !item) {
-		alert('You win');
+	let opacElem = game.getElementsByClassName('opacity');
+	if (opacElem.length === gameItems.length) {
+		alert('You win!');
 		window.location.reload();
-	} else {
-		if (count == 0) {
-		item.classList.add('active');
-		first = item;
-		count++;
-	}else if (count == 1) {
-		item.classList.add('active');
-		second = item;
-		count++;
-	}else if ( first.lastElementChild.id == second.lastElementChild.id) {
-		first.style.visibility = "hidden";
-		second.style.visibility = "hidden";
-		first.classList.remove('active');
-		second.classList.remove('active')
-		count -= 2;
-	} else {
-		first.classList.remove('active');
-		second.classList.remove('active')
-		count -= 2;
-		}
-	}
+	} else if (count == 1) {
+			count++;
+			item.classList.add('active');
+			second = item;
+		if(first.lastElementChild.id == second.lastElementChild.id) {
+			setTimeout(function(){first.classList.remove('active');
+			second.classList.remove('active')
+			first.classList.toggle('opacity');
+			second.classList.toggle('opacity');
+			count = 0;
+			}, 400)
+		} else {
+			setTimeout(function(){first.classList.remove('active');
+			second.classList.remove('active')
+			count = 0;
+			}, 400)
+			}
+		}else if (count == 0) {
+			item.classList.add('active');
+			first = item;
+			count++;
+		}  
 })
-
 
 
 

@@ -14,6 +14,8 @@
   margin: 2px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+  -webkit-transition: opacity 0.4s ease 0s;
+  transition: opacity 0.4s ease 0s;
 }
 .game__block, .game__image {
   position: absolute;
@@ -61,6 +63,10 @@
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   z-index: 3;
+}
+
+.opacity {
+  opacity: 0;
 }
 
 h1 {
